@@ -2,16 +2,16 @@ import pygame
 import random
 BLACK = (0, 0, 0)
 
-blueP = (20, 34, 238)
-greenP = (20, 240, 50)
+water = (0, 0, 255)
+forest = (6, 71, 12)
 redP = (230, 0, 20)
 pinkP= (255,77,195)
-greyP = (160, 160, 160)
+mountains = (160, 160, 160)
 aquaP = (90,139,185)
-yellowP = (255,255,0)
+sand = (194, 178, 128)
 purpleP = (102,0,102)
 whiteP = (255,255,255)
-brownP = (102,51,0)
+land = (181, 101, 29)
 
 colAl = (random.randrange(1, 255), random.randrange(1, 255), random.randrange(1, 255))
 
@@ -36,7 +36,7 @@ while not gameOver:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             gameOver = True
-    fichero=open('mapa2.txt','r')
+    fichero=open('matriz_aleatoria.txt','r')
     screen.fill(BLACK)
     Fuente = pygame.font.SysFont('fontname', 16)
     Tx = 0
@@ -50,25 +50,25 @@ while not gameOver:
 	    		while linea[count]==',':
 	    			count=count+1
 	    		if linea[count] == '0':
-	    			pygame.draw.rect(screen, blueP, [j, i, 38, 38], 0)
+	    			pygame.draw.rect(screen, mountains, [j, i, 38, 38], 0)
 	    		elif linea[count] == '1':
-	    			pygame.draw.rect(screen, greenP, [j, i, 38, 38], 0)
+	    			pygame.draw.rect(screen, land, [j, i, 38, 38], 0)
 	    		elif linea[count] == '2':
-	    			pygame.draw.rect(screen, redP, [j, i, 38, 38], 0)
+	    			pygame.draw.rect(screen, water, [j, i, 38, 38], 0)
 	    		elif linea[count] == '3':
-	    			pygame.draw.rect(screen, pinkP, [j, i, 38, 38], 0)
+	    			pygame.draw.rect(screen, sand, [j, i, 38, 38], 0)
 	    		elif linea[count] == '4':
-	    			pygame.draw.rect(screen, greyP, [j, i, 38, 38], 0)
+	    			pygame.draw.rect(screen, forest, [j, i, 38, 38], 0)
 	    		elif linea[count] == '5':
 	    			pygame.draw.rect(screen, aquaP, [j, i, 38, 38], 0)
 	    		elif linea[count] == '6':
-	    			pygame.draw.rect(screen, yellowP, [j, i, 38, 38], 0)
+	    			pygame.draw.rect(screen, redP, [j, i, 38, 38], 0)
 	    		elif linea[count] == '7':
 	    			pygame.draw.rect(screen, purpleP, [j, i, 38, 38], 0)
 	    		elif linea[count] == '8':
 	    			pygame.draw.rect(screen, whiteP, [j, i, 38, 38], 0)
 	    		elif linea[count] == '9':
-	    			pygame.draw.rect(screen, brownP, [j, i, 38, 38], 0)
+	    			pygame.draw.rect(screen, pinkP, [j, i, 38, 38], 0)
 	    		count=count+1
     	count=0
     	Texto = Fuente.render(str(Tx), True, BLACK)
