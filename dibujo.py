@@ -99,21 +99,29 @@ while not gameOver:
                 columna = columna+1
             
             
-            ## Se obtiene la lista de parametros para esta coordenada
-            lista_params = params[(fila-1, columna-1)]
-            for param in lista_params:  #Este for lee los parametros de la coordenada
-                if(param[0]=='V'):
-                    V = Fuente.render(param[0], param[1], BLACK)
-                elif(param[0]=='O'):
-                    O = Fuente.render(param[0], param[1], BLACK)
-                elif(param[0]=='I'):
-                    I = Fuente.render(param[0], param[1], BLACK)
-                elif(param[0]=='X'):
-                    X = Fuente.render(param[0], param[1], BLACK)                            
-            pantalla.blit(V, [j+3, i+26])
-            pantalla.blit(O, [j+12, i+26])
-            pantalla.blit(I, [j+24, i+26])
-            pantalla.blit(X, [j+30, i+26])
+                ## Se obtiene la lista de parametros para esta coordenada
+                lista_params = params[(fila-1, columna-1)]
+                for param in lista_params:  #Este for lee los parametros de la coordenada
+                    if(param[0]=='V'):
+                        if(param[1]):
+                            V = Fuente.render(param[0], param[1], BLACK)
+                            pantalla.blit(V, [j+3, i+26])
+                    elif(param[0]=='O'):
+                        if(param[1]):
+                            O = Fuente.render(param[0], param[1], BLACK)
+                            pantalla.blit(O, [j+12, i+26])
+                    elif(param[0]=='I'):
+                        if(param[1]):
+                            I = Fuente.render(param[0], param[1], BLACK)
+                            pantalla.blit(I, [j+24, i+26])
+                    elif(param[0]=='X'):
+                        if(param[1]):
+                            X = Fuente.render(param[0], param[1], BLACK)                            
+                            pantalla.blit(X, [j+30, i+26])
+
+            
+            
+            
 
         # Texto es la imagen con la que se pintarán las coordenadas
         Texto = Fuente.render(str(T), True, BLACK)
