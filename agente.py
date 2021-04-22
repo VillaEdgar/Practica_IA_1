@@ -13,7 +13,7 @@ for x in range(0, fil):
 params[(0, 5)] = (('V', False), ('O', False), ('I', True), ('X', False), ('S',False))
 
 
-humano = {0: False, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 5}
+humano = {0: False, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 5}#definicion humano
 
 def agente():
 
