@@ -52,14 +52,17 @@ fil = matriz.shape[0]
 col = matriz.shape[1]
 params = {}             #Se crea el diccionario de parametros
 
+
 for x in range(0, fil):
     for y in range(0, col):
         params[(x, y)] = (('V', False), ('O', False),   ##Se crea una lista de tuplas que definen los
-                          ('I', False), ('X', False))   ##parámetros de cada casilla y se asignan al
+                          ('I', False), ('X', False),
+                          ('S', False))                 ##parámetros de cada casilla y se asignan al
                                                         ##diccionario según sus coordenadas
 
 params[(5,0)] = (('V', True), ('O', False),   #casilla inicial
-                 ('I', True), ('X', False))
+                 ('I', True), ('X', False),
+                 ('S', False))
 
 
 while not gameOver:
