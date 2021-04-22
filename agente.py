@@ -5,15 +5,12 @@ fil = matriz.shape[0]
 col = matriz.shape[1]
 
 params = {}  # Se crea el diccionario de parametros
-paramsd = {}  # Se crea el diccionario de parametros
 
 for x in range(0, fil):
     for y in range(0, col):
-        params[(x, y)] = (('V', False), ('O', False),   ##Se crea una lista de tuplas que definen los
-                          ('I', False), ('X', False), ('S',False))
+        params[(x, y)] = (('V', False), ('O', False), ('I', False), ('X', False), ('S',False))
 
-params[(0, 5)] = (('V', False), ('O', False),   ##Se crea una lista de tuplas que definen los
-                          ('I', True), ('X', False), ('S',False))
+params[(0, 5)] = (('V', False), ('O', False), ('I', True), ('X', False), ('S',False))
 
 
 humano = {0: False, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 5}
