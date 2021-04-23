@@ -62,7 +62,8 @@ for x in range(0, fil):
 
 params[(5,0)] = (('V', True), ('O', False),   #casilla inicial
                  ('I', True), ('X', False),
-                 ('S', False))
+                 ('S', True))
+
 
 
 while not gameOver:
@@ -83,7 +84,10 @@ while not gameOver:
             # este for recorre el alto de la pantalla
             for j in range(1, tamañoPantalla[1], 40):
 
-                if fila == 6 and columna == 0:
+                lista_params = params[(fila-1, columna)]
+
+                if lista_params[0][1] or lista_params[4][1]:
+
 
                     if linea[columna] == 0:
                            # Los cuadros son ligeramente más pequeños para dar el efecto de la cuadricula.
