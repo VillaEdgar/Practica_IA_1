@@ -1,8 +1,8 @@
 import pygame
 import random
 import genera_matriz as gm
-BLACK = (0, 0, 0)
 
+BLACK = (0, 0, 0)
 water = (0, 0, 255)
 forest = (6, 71, 12)
 redP = (230, 0, 20)
@@ -51,19 +51,25 @@ matriz = gm.cargar_matriz('matriz_aleatoria.txt')
 fil = matriz.shape[0]
 col = matriz.shape[1]
 params = {}             #Se crea el diccionario de parametros
-#print("Columnas:"+str(col)+"\n");
-#print("Filas:"+str(fil)+"\n");
+
+
 for x in range(0, fil):
     for y in range(0, col):
         params[(x, y)] = (('V', False), ('O', False),   ##Se crea una lista de tuplas que definen los
-                          ('I', False), ('X', False))   ##parámetros de cada casilla y se asignan al
-                                                        ##diccionario según sus coordenadas 
+                          ('I', False), ('X', False),
+                          ('S', False))                 ##parámetros de cada casilla y se asignan al
+                                                        ##diccionario según sus coordenadas
+
+params[(5,0)] = (('V', True), ('O', False),   #casilla inicial
+                 ('I', True), ('X', False),
+                 ('S', True))
+
+
 while not gameOver:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             gameOver = True
     pantalla.fill(BLACK)  # La pantalla se llena de un fondo negro.
-
     # T es un contador para pintar las coordenadas
     T = 0
     #fila es la fila que se va a recorrer de la matriz :V 
@@ -76,51 +82,61 @@ while not gameOver:
             columna = 0
             # este for recorre el alto de la pantalla
             for j in range(1, tamañoPantalla[1], 40):
-                if linea[columna] == 0:
-                    # Los cuadros son ligeramente más pequeños para dar el efecto de la cuadricula.
-                    pygame.draw.rect(pantalla, mountains, [j, i, 38, 38], 0)
-                elif linea[columna] == 1:
-                    pygame.draw.rect(pantalla, land, [j, i, 38, 38], 0)
-                elif linea[columna] == 2:
-                    pygame.draw.rect(pantalla, water, [j, i, 38, 38], 0)
-                elif linea[columna] == 3:
-                    pygame.draw.rect(pantalla, sand, [j, i, 38, 38], 0)
-                elif linea[columna] == 4:
-                    pygame.draw.rect(pantalla, forest, [j, i, 38, 38], 0)
-                elif linea[columna] == 5:
-                    pygame.draw.rect(pantalla, aquaP, [j, i, 38, 38], 0)
-                elif linea[columna] == 6:
-                    pygame.draw.rect(pantalla, redP, [j, i, 38, 38], 0)
-                elif linea[columna] == 7:
-                    pygame.draw.rect(pantalla, purpleP, [j, i, 38, 38], 0)
-                elif linea[columna] == 8:
-                    pygame.draw.rect(pantalla, whiteP, [j, i, 38, 38], 0)
-                elif linea[columna] == 9:
-                    pygame.draw.rect(pantalla, pinkP, [j, i, 38, 38], 0)
+                lista_params = params[(fila-1, columna)]
+
+                if lista_params[0][1] or lista_params[4][1]:
+
+                    if linea[columna] == 0:
+                           # Los cuadros son ligeramente más pequeños para dar el efecto de la cuadricula.
+                           pygame.draw.rect(pantalla, mountains, [j, i, 38, 38], 0)
+                    elif linea[columna] == 1:
+                            pygame.draw.rect(pantalla, land, [j, i, 38, 38], 0)
+                    elif linea[columna] == 2:
+                            pygame.draw.rect(pantalla, water, [j, i, 38, 38], 0)
+                    elif linea[columna] == 3:
+                            pygame.draw.rect(pantalla, sand, [j, i, 38, 38], 0)
+                    elif linea[columna] == 4:
+                            pygame.draw.rect(pantalla, forest, [j, i, 38, 38], 0)
+                    elif linea[columna] == 5:
+                            pygame.draw.rect(pantalla, aquaP, [j, i, 38, 38], 0)
+                    elif linea[columna] == 6:
+                            pygame.draw.rect(pantalla, redP, [j, i, 38, 38], 0)
+                    elif linea[columna] == 7:
+                            pygame.draw.rect(pantalla, purpleP, [j, i, 38, 38], 0)
+                    elif linea[columna] == 8:
+                            pygame.draw.rect(pantalla, whiteP, [j, i, 38, 38], 0)
+                    elif linea[columna] == 9:
+                            pygame.draw.rect(pantalla, pinkP, [j, i, 38, 38], 0)
+                else:
+                    pygame.draw.rect(pantalla, BLACK, [j, i, 38, 38], 0)
+
+
                 columna = columna+1
+
+
                 ## Se obtiene la lista de parametros para esta coordenada
                 lista_params = params[(fila-1, columna-1)]
-                for k in range(4):
-                	if(lista_params[k][0]=='V'):
-                		if(lista_params[k][1]):
-                			V = Fuente.render(lista_params[k][0], True, BLACK)
-                			pantalla.blit(V, [j+3, i+26])
-                	if(lista_params[k][0]=='O'):
-                		if(lista_params[k][1]):
-                			O = Fuente.render(lista_params[k][0], lista_params[k][1], BLACK)
-                			pantalla.blit(O, [j+12, i+26])
-                	if(lista_params[k][0]=='I'):
-                		if(lista_params[k][1]):
-                			I = Fuente.render(lista_params[k][0], lista_params[k][1], BLACK)
-                			pantalla.blit(I, [j+24, i+26])
-                	if(lista_params[k][0]=='X'):
-                		if(lista_params[k][1]):
-                			X = Fuente.render(lista_params[k][0], lista_params[k][1], BLACK)
-                			pantalla.blit(X, [j+30, i+26])                            
-            
-            
-            
-            
+                for param in lista_params:  #Este for lee los parametros de la coordenada
+                    if(param[0]=='V'):
+                        if(param[1]):
+                            V = Fuente.render(param[0], param[1], BLACK)
+                            pantalla.blit(V, [j+3, i+26])
+                    elif(param[0]=='O'):
+                        if(param[1]):
+                            O = Fuente.render(param[0], param[1], BLACK)
+                            pantalla.blit(O, [j+12, i+26])
+                    elif(param[0]=='I'):
+                        if(param[1]):
+                            I = Fuente.render(param[0], param[1], BLACK)
+                            pantalla.blit(I, [j+24, i+26])
+                    elif(param[0]=='X'):
+                        if(param[1]):
+                            X = Fuente.render(param[0], param[1], BLACK)
+                            pantalla.blit(X, [j+30, i+26])
+
+
+
+
 
         # Texto es la imagen con la que se pintarán las coordenadas
         Texto = Fuente.render(str(T), True, BLACK)
