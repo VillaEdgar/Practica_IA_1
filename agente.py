@@ -14,7 +14,7 @@ def spawn(paramsd,matriz):
         for j in range(0, col):
             if(paramsd[(i,j)]['I']):
 
-                paramsd[(i,j)]['V']=True
+                #paramsd[(i,j)]['V']=True
                 paramsd[(i,j)]['S'] = True
                 paramsd[(i,j)]['X'] = True
                 #
@@ -27,8 +27,8 @@ def sense(paramsd, matriz):
     aux=0;
     for i in range(0, fil):
         for j in range(0, col):
-
             if (paramsd[(i, j)]['X']):
+                #print(paramsd[(i, j)], i, j)
 
                 paramsd[(i, j)]['S'] = True
 
@@ -36,24 +36,32 @@ def sense(paramsd, matriz):
                     paramsd[(i-1, j)]['S']= True
                     if humano[matriz[i -1][j]]and not paramsd[(i-1, j)]['V']:
                         aux = aux + 1
+                        #print(paramsd[(i, j)], i, j,1)
 
                 if(i<fil-1):
                     paramsd[(i+1,j)]['S'] = True
                     if humano[matriz[i+1][j]]and not paramsd[(i+1, j)]['V']:
                         aux = aux + 1
+                        #print(paramsd[(i, j)], i, j,2)
 
                 if (j>0):
                     paramsd[(i, j-1)]['S']= True
                     if humano[matriz[i][j -1]] and not paramsd[(i, j-1)]['V']:
                         aux = aux + 1
+                        #print(paramsd[(i, j)], i, j,3)
+
                 if (j < col-1):
                     paramsd[(i, j+1)]['S']= True
                     if humano[matriz[i][j+1]]and not paramsd[(i, j+1)]['V']:
                         aux = aux+1
+                        #print(paramsd[(i, j)], i, j,4)
+
 
                 if aux>1:
                     paramsd[(i, j )]['O'] = True
-                    print(paramsd[(i, j )])
+                else:
+                    paramsd[(i, j )]['O'] = False
+
     return paramsd
 
 def step(paramsd, matriz):
@@ -63,27 +71,44 @@ def step(paramsd, matriz):
     for i in range(0, fil):
         for j in range(0, col):
                 if paramsd[(i, j)]['X']:
+                    print(paramsd[(i, j)], i, j)
+
+                    if paramsd[(i, j)]['X'] and paramsd[(i, j)]['V']:
+
+                        for auxi in range(0, fil):
+                             for auxj in range(0, col):
+                                if paramsd[(auxi, auxj)]['O']:
+
+                                    paramsd[(auxi, auxj)]['X'] = True
+                                    paramsd[(i, j)]['X'] = False
+                                    paramsd[(auxi, auxj)]['V'] = False
+                                    return paramsd
 
                     paramsd[(i, j)]['V'] = True
 
                     if i-1 >= 0 and humano[matriz[i-1][j]] and not paramsd[(i-1, j)]['V']:
                         paramsd[(i, j)]['X']=False
                         paramsd[(i-1, j)]['X']=True
+
+
                         return paramsd
 
                     if j -1 >= 0 and humano[matriz[i][j-1]] and not paramsd[(i, j-1)]['V']:
                         paramsd[(i, j)]['X'] = False
                         paramsd[(i, j - 1)]['X'] = True
+
                         return paramsd
 
                     if i+1 < fil-1 and humano[matriz[i+1][j]] and not paramsd[(i+1, j)]['V'] :
                         paramsd[(i, j)]['X'] = False
                         paramsd[(i +1, j)]['X'] = True
+
                         return paramsd
 
                     if j+1 < col-1 and humano[matriz[i][j+1]] and not paramsd[(i, j+1)]['V']:
                         paramsd[(i, j)]['X'] = False
                         paramsd[(i, j+1)]['X'] = True
+
                         return paramsd
 
 
