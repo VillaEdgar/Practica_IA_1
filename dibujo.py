@@ -2,6 +2,7 @@ import pygame
 import random
 import genera_matriz as gm
 import agente as ag
+import time
 
 BLACK = (0, 0, 0)
 water = (0, 0, 255)
@@ -71,6 +72,7 @@ while not gameOver:
     T = 0
     #fila es la fila que se va a recorrer de la matriz :V 
     fila = 0
+    ag.sense(paramsd,matriz)
     # este for recorre el ancho de la pantalla
     for i in range(1, tamañoPantalla[0], 40):
         linea = matriz[fila] #se obtiene una fila de la matriz
@@ -83,7 +85,6 @@ while not gameOver:
                 lista_params = paramsd[(fila-1, columna)]
 
                 if lista_params['V'] or lista_params['S']:
-
 
                     if linea[columna] == 0:
                            # Los cuadros son ligeramente más pequeños para dar el efecto de la cuadricula.
@@ -126,20 +127,16 @@ while not gameOver:
                 if(lista_params['X']):
                     X = Fuente.render('X', lista_params['X'], BLACK)
                     pantalla.blit(X, [j+30, i+26])
-                
-                ag.sense(paramsd,matriz)
-                ag.step(paramsd,matriz)
-
-
-
-
-
+    
         # Texto es la imagen con la que se pintarán las coordenadas
         Texto = Fuente.render(str(T), True, BLACK)
         pantalla.blit(Texto, [i, 2])  # Coordenadas en el eje X
         if T != 0:
             pantalla.blit(Texto, [2, i])  # Coordenadas en el eje Y
         T += 1
+    ag.step(paramsd,matriz)
     pygame.display.flip()
-    reloj.tick(5)
+    continuar=input("Presiona Enter para continuar")
+    
+
 pygame.quit()
