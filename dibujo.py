@@ -65,6 +65,7 @@ params[(5,0)] = (('V', True), ('O', False),   #casilla inicial
                  ('S', True))
 
 
+
 while not gameOver:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -82,9 +83,11 @@ while not gameOver:
             columna = 0
             # este for recorre el alto de la pantalla
             for j in range(1, tamañoPantalla[1], 40):
+
                 lista_params = params[(fila-1, columna)]
 
                 if lista_params[0][1] or lista_params[4][1]:
+
 
                     if linea[columna] == 0:
                            # Los cuadros son ligeramente más pequeños para dar el efecto de la cuadricula.
