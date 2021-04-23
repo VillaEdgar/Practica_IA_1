@@ -1,6 +1,8 @@
 import pygame
 import random
 import genera_matriz as gm
+import agente as ag
+import time
 
 BLACK = (0, 0, 0)
 water = (0, 0, 255)
@@ -50,21 +52,16 @@ Fuente = pygame.font.SysFont('fontname', 16)
 matriz = gm.cargar_matriz('matriz_aleatoria.txt')
 fil = matriz.shape[0]
 col = matriz.shape[1]
-params = {}             #Se crea el diccionario de parametros
+paramsd = {}             #Se crea el diccionario de parametros
 
 
 for x in range(0, fil):
     for y in range(0, col):
-        params[(x, y)] = (('V', False), ('O', False),   ##Se crea una lista de tuplas que definen los
-                          ('I', False), ('X', False),
-                          ('S', False))                 ##parámetros de cada casilla y se asignan al
-                                                        ##diccionario según sus coordenadas
+        paramsd[(x, y)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False}
 
-params[(5,0)] = (('V', True), ('O', False),   #casilla inicial
-                 ('I', True), ('X', False),
-                 ('S', True))
+paramsd[(5, 0)] = {'V': False, 'O': False, 'I': True, 'X': False, 'S':False}
 
-
+ag.spawn(paramsd, matriz)
 
 while not gameOver:
     for event in pygame.event.get():
@@ -75,6 +72,7 @@ while not gameOver:
     T = 0
     #fila es la fila que se va a recorrer de la matriz :V 
     fila = 0
+    ag.sense(paramsd,matriz)
     # este for recorre el ancho de la pantalla
     for i in range(1, tamañoPantalla[0], 40):
         linea = matriz[fila] #se obtiene una fila de la matriz
@@ -84,10 +82,9 @@ while not gameOver:
             # este for recorre el alto de la pantalla
             for j in range(1, tamañoPantalla[1], 40):
 
-                lista_params = params[(fila-1, columna)]
+                lista_params = paramsd[(fila-1, columna)]
 
-                if lista_params[0][1] or lista_params[4][1]:
-
+                if lista_params['V'] or lista_params['S']:
 
                     if linea[columna] == 0:
                            # Los cuadros son ligeramente más pequeños para dar el efecto de la cuadricula.
@@ -118,35 +115,28 @@ while not gameOver:
 
 
                 ## Se obtiene la lista de parametros para esta coordenada
-                lista_params = params[(fila-1, columna-1)]
-                for param in lista_params:  #Este for lee los parametros de la coordenada
-                    if(param[0]=='V'):
-                        if(param[1]):
-                            V = Fuente.render(param[0], param[1], BLACK)
-                            pantalla.blit(V, [j+3, i+26])
-                    elif(param[0]=='O'):
-                        if(param[1]):
-                            O = Fuente.render(param[0], param[1], BLACK)
-                            pantalla.blit(O, [j+12, i+26])
-                    elif(param[0]=='I'):
-                        if(param[1]):
-                            I = Fuente.render(param[0], param[1], BLACK)
-                            pantalla.blit(I, [j+24, i+26])
-                    elif(param[0]=='X'):
-                        if(param[1]):
-                            X = Fuente.render(param[0], param[1], BLACK)
-                            pantalla.blit(X, [j+30, i+26])
-
-
-
-
-
+                if(lista_params['V']):
+                    V = Fuente.render('V', lista_params['V'], BLACK)
+                    pantalla.blit(V, [j+3, i+26])
+                if(lista_params['O']):
+                    O = Fuente.render('O', lista_params['O'], BLACK)
+                    pantalla.blit(O, [j+12, i+26])
+                if(lista_params['I']):
+                    I = Fuente.render('I', lista_params['I'], BLACK)
+                    pantalla.blit(I, [j+24, i+26])
+                if(lista_params['X']):
+                    X = Fuente.render('X', lista_params['X'], BLACK)
+                    pantalla.blit(X, [j+30, i+26])
+    
         # Texto es la imagen con la que se pintarán las coordenadas
         Texto = Fuente.render(str(T), True, BLACK)
         pantalla.blit(Texto, [i, 2])  # Coordenadas en el eje X
         if T != 0:
             pantalla.blit(Texto, [2, i])  # Coordenadas en el eje Y
         T += 1
+    ag.step(paramsd,matriz)
     pygame.display.flip()
-    reloj.tick(5)
+    continuar=input("Presiona Enter para continuar")
+    
+
 pygame.quit()
