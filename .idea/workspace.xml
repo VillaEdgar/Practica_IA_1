@@ -56,9 +56,9 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/genera_matriz.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dibujo.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/agente.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/genera_matriz.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1rV6CNy3bEn3yfBeZ3ctbhb87jW" />
   <component name="ProjectViewState">
@@ -70,7 +70,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="Settings.Markdown" />
   </component>
-  <component name="RunManager" selected="Python.agente">
+  <component name="RunManager" selected="Python.dibujo">
     <configuration name="agente" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -136,8 +136,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.agente" />
         <item itemvalue="Python.dibujo" />
+        <item itemvalue="Python.agente" />
         <item itemvalue="Python.kepedo" />
       </list>
     </recent_temporary>
