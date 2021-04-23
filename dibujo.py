@@ -60,8 +60,8 @@ for x in range(0, fil):
     for y in range(0, col):
         paramsd[(x, y)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False, 'F':False}
 
-paramsd[(5, 0)] = {'V': False, 'O': False, 'I': True, 'X': False, 'S':False,'F':False}
-paramsd[(5,8)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False,'F':True}
+paramsd[(10, 0)] = {'V': False, 'O': False, 'I': True, 'X': False, 'S':False,'F':False}
+paramsd[(6,8)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False,'F':True}
 
 ag.spawn(paramsd, matriz)
 
@@ -125,10 +125,13 @@ while not gameOver:
                     pantalla.blit(O, [j+12, i+26])
                 if(lista_params['I']):
                     I = Fuente.render('I', lista_params['I'], BLACK)
-                    pantalla.blit(I, [j+24, i+26])
+                    pantalla.blit(I, [j+15, i+15])
                 if(lista_params['X']):
                     X = Fuente.render('X', lista_params['X'], BLACK)
                     pantalla.blit(X, [j+30, i+26])
+                if (lista_params['F']):
+                    X = Fuente.render('F', lista_params['F'], BLACK)
+                    pantalla.blit(X, [j+15, i+15])
     
         # Texto es la imagen con la que se pintarán las coordenadas
         Texto = Fuente.render(str(T), True, BLACK)
@@ -138,7 +141,7 @@ while not gameOver:
         T += 1
     ag.step(paramsd,matriz)
     pygame.display.flip()
-    reloj.tick(0.5)
+    reloj.tick(5)
     
 
 pygame.quit()
