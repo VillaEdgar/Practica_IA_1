@@ -1,4 +1,3 @@
-
 import pygame
 import random
 import genera_matriz as gm
@@ -66,9 +65,7 @@ paramsd[(14,7)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False,'F'
 ag.spawn(paramsd, matriz)
 
 while not gameOver:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            gameOver = True
+        
     pantalla.fill(BLACK)  # La pantalla se llena de un fondo negro.
     # T es un contador para pintar las coordenadas
     T = 0
@@ -139,9 +136,28 @@ while not gameOver:
         if T != 0:
             pantalla.blit(Texto, [2, i])  # Coordenadas en el eje Y
         T += 1
-    ag.step(paramsd,matriz)
+
     pygame.display.flip()
-    reloj.tick(1)
-    
+
+
+    #ag.step(paramsd, matriz)
+    for event in pygame.event.get():
+    	if event.type == pygame.QUIT:
+	        print("GameOver!")
+	        gameOver = True
+    	elif event.type == pygame.KEYDOWN:
+	        if event.key == pygame.K_w:
+	            print("Player moved up!")
+	            ag.step_up(paramsd, matriz)
+	        elif event.key == pygame.K_a:
+	            print("Player moved left!")
+	            ag.step_left(paramsd, matriz)
+	        elif event.key == pygame.K_s:
+	            print("Player moved down!")
+	            ag.step_down(paramsd, matriz)
+	        elif event.key == pygame.K_d:
+	            print("Player moved right!")
+	            ag.step_right(paramsd, matriz)
+    reloj.tick(5)    
 
 pygame.quit()
