@@ -50,7 +50,7 @@ Fuente = pygame.font.SysFont('fontname', 16)
 #I = Fuente.render('I', True, BLACK)
 #X = Fuente.render('X', True, BLACK)
 
-matriz = gm.cargar_matriz('matriz_aleatoria.txt')
+matriz = gm.cargar_matriz('laberinto.txt')
 fil = matriz.shape[0]
 col = matriz.shape[1]
 paramsd = {}             #Se crea el diccionario de parametros
@@ -58,7 +58,7 @@ paramsd = {}             #Se crea el diccionario de parametros
 
 for x in range(0, fil):
     for y in range(0, col):
-        paramsd[(x, y)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False, 'F':False}
+        paramsd[(x, y)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False, 'F':False,'k':False}
 
 paramsd[(10, 0)] = {'V': False, 'O': False, 'I': True, 'X': False, 'S':False,'F':False}
 paramsd[(6,8)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False,'F':True}
