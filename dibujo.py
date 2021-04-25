@@ -61,7 +61,7 @@ for x in range(0, fil):
         paramsd[(x, y)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False, 'F':False}
 
 paramsd[(10, 0)] = {'V': False, 'O': False, 'I': True, 'X': False, 'S':False,'F':False}
-paramsd[(6,8)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False,'F':True}
+paramsd[(14,7)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False,'F':True}
 
 ag.spawn(paramsd, matriz)
 
@@ -141,7 +141,7 @@ while not gameOver:
         T += 1
     ag.step(paramsd,matriz)
     pygame.display.flip()
-    reloj.tick(5)
+    reloj.tick(1)
     
 
 pygame.quit()
