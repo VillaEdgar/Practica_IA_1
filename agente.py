@@ -1,4 +1,5 @@
 humano = {0: False, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 5} #definicion humano
+pulpo = {0: False, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 5} #definicion humano
 
 '''for x in range(0, fil):
     print()
@@ -13,7 +14,7 @@ def spawn(paramsd,matriz):
     for i in range(0, fil):
         for j in range(0, col):
             if(paramsd[(i,j)]['I']):
-                if (humano[matriz[i][j]]):
+                if (humano[matriz[i][j]]):#generalizar
                     paramsd[(i,j)]['S'] = True
                     paramsd[(i,j)]['X'] = True
                 else:
@@ -69,7 +70,7 @@ def sense(paramsd, matriz):
                 if aux>1:
                     paramsd[(i, j )]['O'] = True
                 else:
-                    paramsd[(i, j )]['O'] = False
+                    paramsd[(i, j )]['k'] = True
 
     return paramsd
 
@@ -92,7 +93,7 @@ def step(paramsd, matriz):
 
                             for auxi in range(0, fil):
                                 for auxj in range(0, col):
-                                    if paramsd[(auxi, auxj)]['O']:
+                                    if not paramsd[(auxi, auxj)]['k'] and paramsd[(auxi, auxj)]['O']:
                                         paramsd[(auxi, auxj)]['X'] = True
                                         paramsd[(i, j)]['X'] = False
                                         paramsd[(auxi, auxj)]['V'] = False
