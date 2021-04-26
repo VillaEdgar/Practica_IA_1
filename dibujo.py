@@ -49,7 +49,7 @@ Fuente = pygame.font.SysFont('fontname', 16)
 #I = Fuente.render('I', True, BLACK)
 #X = Fuente.render('X', True, BLACK)
 
-matriz = gm.cargar_matriz('matriz_aleatoria.txt')
+matriz = gm.cargar_matriz('laberinto.txt')
 fil = matriz.shape[0]
 col = matriz.shape[1]
 paramsd = {}             #Se crea el diccionario de parametros
@@ -57,16 +57,15 @@ paramsd = {}             #Se crea el diccionario de parametros
 
 for x in range(0, fil):
     for y in range(0, col):
-        paramsd[(x, y)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False}
+        paramsd[(x, y)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False, 'F':False, 'k':False}
 
-paramsd[(5, 0)] = {'V': False, 'O': False, 'I': True, 'X': False, 'S':False}
+paramsd[(10, 0)] = {'V': False, 'O': False, 'I': True, 'X': False, 'S':False,'F':False}
+paramsd[(6,8)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False,'F':True}
 
 ag.spawn(paramsd, matriz)
 
 while not gameOver:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            gameOver = True
+        
     pantalla.fill(BLACK)  # La pantalla se llena de un fondo negro.
     # T es un contador para pintar las coordenadas
     T = 0
@@ -123,10 +122,13 @@ while not gameOver:
                     pantalla.blit(O, [j+12, i+26])
                 if(lista_params['I']):
                     I = Fuente.render('I', lista_params['I'], BLACK)
-                    pantalla.blit(I, [j+24, i+26])
+                    pantalla.blit(I, [j+15, i+15])
                 if(lista_params['X']):
                     X = Fuente.render('X', lista_params['X'], BLACK)
                     pantalla.blit(X, [j+30, i+26])
+                if (lista_params['F']):
+                    X = Fuente.render('F', lista_params['F'], BLACK)
+                    pantalla.blit(X, [j+15, i+15])
     
         # Texto es la imagen con la que se pintarán las coordenadas
         Texto = Fuente.render(str(T), True, BLACK)
@@ -134,9 +136,24 @@ while not gameOver:
         if T != 0:
             pantalla.blit(Texto, [2, i])  # Coordenadas en el eje Y
         T += 1
-    ag.step(paramsd,matriz)
+
     pygame.display.flip()
-    continuar=input("Presiona Enter para continuar")
+
+    #ag.step(paramsd, matriz)
+    for event in pygame.event.get():
+    	if event.type == pygame.QUIT:
+	        print("GameOver!")
+	        gameOver = True
+    	elif event.type == pygame.KEYDOWN:
+	        if event.key == pygame.K_w:
+	            ag.step_up(paramsd, matriz)
+	        elif event.key == pygame.K_a:
+	            ag.step_left(paramsd, matriz)
+	        elif event.key == pygame.K_s:
+	            ag.step_down(paramsd, matriz)
+	        elif event.key == pygame.K_d:
+	            ag.step_right(paramsd, matriz)
+    reloj.tick(5)
     
 
 pygame.quit()
