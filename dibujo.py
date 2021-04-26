@@ -22,6 +22,7 @@ tamañoCasilla = 40
 # tamañoCuadricula es el numero de casillas que tendrá la cuadricula por lado
 tamañoCuadricula = 15
 columna = 0
+<<<<<<< HEAD
 def dibujar(agente,modo):
     pygame.init()
 
@@ -145,3 +146,4 @@ def dibujar(agente,modo):
                         ag.step_right(paramsd, matriz)
         reloj.tick(5)
     pygame.quit()
+
