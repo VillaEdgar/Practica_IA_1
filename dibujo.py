@@ -41,6 +41,7 @@ def dibujar(agente,modo):
     # Fuente es un estilo de imagen inicializada dentro de pygame. Pygame solo muestra imagenes o dibujos, no texto.
     Fuente = pygame.font.SysFont('fontname', 16)
     matriz = gm.cargar_matriz('matriz_aleatoria.txt')
+
     fil = matriz.shape[0]
     col = matriz.shape[1]
     paramsd = {}             #Se crea el diccionario de parametros
@@ -91,6 +92,7 @@ def dibujar(agente,modo):
                                 pygame.draw.rect(pantalla, pantano, [j, i, 38, 38], 0)
                         elif linea[columna] == 6:
                                 pygame.draw.rect(pantalla, nieve, [j, i, 38, 38], 0)
+
                     else:
                         pygame.draw.rect(pantalla, BLACK, [j, i, 38, 38], 0)
 
@@ -127,6 +129,7 @@ def dibujar(agente,modo):
         if modo == 1:
             ag.step(paramsd, matriz)
         elif modo == 2:
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     print("GameOver!")
