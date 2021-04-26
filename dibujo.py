@@ -57,7 +57,7 @@ paramsd = {}             #Se crea el diccionario de parametros
 
 for x in range(0, fil):
     for y in range(0, col):
-        paramsd[(x, y)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False, 'F':False,'k':False}
+        paramsd[(x, y)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False, 'F':False, 'k':False}
 
 paramsd[(10, 0)] = {'V': False, 'O': False, 'I': True, 'X': False, 'S':False,'F':False}
 paramsd[(6,8)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False,'F':True}
@@ -146,16 +146,12 @@ while not gameOver:
 	        gameOver = True
     	elif event.type == pygame.KEYDOWN:
 	        if event.key == pygame.K_w:
-	            print("Player moved up!")
 	            ag.step_up(paramsd, matriz)
 	        elif event.key == pygame.K_a:
-	            print("Player moved left!")
 	            ag.step_left(paramsd, matriz)
 	        elif event.key == pygame.K_s:
-	            print("Player moved down!")
 	            ag.step_down(paramsd, matriz)
 	        elif event.key == pygame.K_d:
-	            print("Player moved right!")
 	            ag.step_right(paramsd, matriz)
     reloj.tick(5)
     
