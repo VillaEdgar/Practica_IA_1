@@ -79,7 +79,7 @@ class MainWindow(tk.Frame):
         ente = self.var_ente.get()
         modo = self.var_modo.get()
         if ente and modo:
-            dibujo.init()
+            dibujo.init(ente,modo)
         else:
             messagebox.showinfo(message="Seleccione un personaje y un modo")
         

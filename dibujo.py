@@ -7,13 +7,10 @@ import time
 BLACK = (0, 0, 0)
 water = (0, 0, 255)
 forest = (6, 71, 12)
-redP = (230, 0, 20)
-pinkP = (255, 77, 195)
 mountains = (160, 160, 160)
-aquaP = (90, 139, 185)
 sand = (194, 178, 128)
-purpleP = (102, 0, 102)
-whiteP = (255, 255, 255)
+pantano = (102, 0, 102)
+nieve = (255, 255, 255)
 land = (181, 101, 29)
 
 # tamañoCasilla es el tamaño que tendrá cada lado de las casillas
@@ -22,7 +19,6 @@ tamañoCasilla = 40
 # tamañoCuadricula es el numero de casillas que tendrá la cuadricula por lado
 tamañoCuadricula = 15
 columna = 0
-<<<<<<< HEAD
 def dibujar(agente,modo):
     pygame.init()
 
@@ -94,7 +90,7 @@ def dibujar(agente,modo):
                         elif linea[columna] == 5:
                                 pygame.draw.rect(pantalla, pantano, [j, i, 38, 38], 0)
                         elif linea[columna] == 6:
-                                pygame.draw.rect(pantalla, nueve, [j, i, 38, 38], 0)
+                                pygame.draw.rect(pantalla, nieve, [j, i, 38, 38], 0)
                     else:
                         pygame.draw.rect(pantalla, BLACK, [j, i, 38, 38], 0)
 
@@ -146,4 +142,3 @@ def dibujar(agente,modo):
                         ag.step_right(paramsd, matriz)
         reloj.tick(5)
     pygame.quit()
-
