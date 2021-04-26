@@ -84,7 +84,7 @@ def sense(paramsd, matriz):
                     if (ente[matriz[i][j+1]]and not paramsd[(i, j+1)]['V']):
                         aux = aux+1
 
-                if aux>1:
+                if aux>1and not paramsd[(i, j )]['F'] == True:
                     paramsd[(i, j )]['O'] = True
                 else:
                     paramsd[(i, j )]['k'] = True
