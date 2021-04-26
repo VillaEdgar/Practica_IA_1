@@ -1,21 +1,20 @@
 humano = {0: False, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 5} #definicion humano
-pulpo = {0: False, 1: 2, 2: 1, 3: False, 4: 3, 5: 2, 6: False} #definicion humano
-mono = {0: False, 1: 2, 2: 4, 3: 3, 4: 1, 5: 5, 6: False}
-chupacabras = {0: 15, 1: 4, 2: False, 3: False, 4: 4, 5: 5, 6: 3}
+pulpo = {0: False, 1: 2, 2: 1, 3: False, 4: 3, 5: 2, 6: False} #definicion pulpo
+mono = {0: False, 1: 2, 2: 4, 3: 3, 4: 1, 5: 5, 6: False} #definicion mono
+chupacabras = {0: 15, 1: 4, 2: False, 3: False, 4: 4, 5: 5, 6: 3} #definicion chupacabras
 ente={}
 
+x=4
 
-x=3; #provicional, pruebas ente actual : sasquatch
-
-if x==0:
+if x==1:
     ente=humano
-elif x==1:
-    ente=pulpo
 elif x==2:
-    ente = mono
+    ente=pulpo
 elif x==3:
+    ente = mono
+elif x==4:
     ente =chupacabras
-elif x<0 and x>4:
+elif x<1 and x>4:
     print("ente no definido")
 
 '''for x in range(0, fil):
