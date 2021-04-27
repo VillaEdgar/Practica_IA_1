@@ -4,26 +4,19 @@ mono = {0: False, 1: 2, 2: 4, 3: 3, 4: 1, 5: 5, 6: False} #definicion mono
 chupacabras = {0: 15, 1: 4, 2: False, 3: False, 4: 4, 5: 5, 6: 3} #definicion chupacabras
 ente={}
 
-x=4
 
-if x==1:
-    ente=humano
-elif x==2:
-    ente=pulpo
-elif x==3:
-    ente = mono
-elif x==4:
-    ente =chupacabras
-elif x<1 and x>4:
-    print("ente no definido")
-
-'''for x in range(0, fil):
-    print()
-    for y in range(0, col):
-        print(str(x),str(y), paramsd[(x, y)])
-'''
-
-def spawn(paramsd,matriz,):
+def spawn(paramsd,matriz,agente):
+    
+    if agente==1:
+        ente=humano
+    elif agente==2:
+        ente=pulpo
+    elif agente==3:
+        ente = mono
+    elif agente==4:
+        ente =chupacabras
+    elif agente<1 and agente>4:
+        print("ente no definido")
     col= matriz.shape[0]
     fil = matriz.shape[1]
     for i in range(0, fil):

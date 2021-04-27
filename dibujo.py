@@ -53,7 +53,7 @@ def dibujar(agente,modo):
     paramsd[(10, 0)] = {'V': False, 'O': False, 'I': True, 'X': False, 'S':False,'F':False}
     paramsd[(6,8)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False,'F':True}
 
-    ag.spawn(paramsd, matriz)
+    ag.spawn(paramsd, matriz,agente)
 
     while not gameOver:
             
