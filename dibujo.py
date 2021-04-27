@@ -22,7 +22,7 @@ tamañoCasilla = 40
 # tamañoCuadricula es el numero de casillas que tendrá la cuadricula por lado
 tamañoCuadricula = 15
 columna = 0
-def dibujar(agente,modo):
+def dibujar(agente,modo,x,y):
     print("Agente"+str(agente))
     print("Modo"+str(modo))
     pygame.init()
@@ -57,7 +57,7 @@ def dibujar(agente,modo):
         for y in range(0, col):
             paramsd[(x, y)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False, 'F':False, 'k':False}
 
-    paramsd[(10, 0)] = {'V': False, 'O': False, 'I': True, 'X': False, 'S':False,'F':False}
+    paramsd[(x, y)] = {'V': False, 'O': False, 'I': True, 'X': False, 'S':False,'F':False}
     paramsd[(6,8)] = {'V': False, 'O': False, 'I': False, 'X': False, 'S':False,'F':True}
 
     ente=ag.definirAgente(agente)
