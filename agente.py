@@ -238,4 +238,5 @@ def step_left(paramsd, matriz, ente2):
                             paramsd[(i, j - 1)]['X'] = True
 
                             costo = ente2[matriz[i][j-1]]
+
                             return costo
